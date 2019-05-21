@@ -1,11 +1,11 @@
-public class Card {
+abstract class Card {
 
 
     private String name;
     private  String description;
     private String dialogue;
 
-
+    abstract void display();
 
 
 public void setName(String name){
@@ -32,4 +32,5 @@ public void setDialogue(String dialogue){
 public String getDialogue(){
     return this.dialogue;
 }
+
 }
