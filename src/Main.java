@@ -22,7 +22,7 @@ static String choice=null;
         System.out.println();
         System.out.println("Choose your fate:");
         System.out.println("Meet your Guide on this ill-fated journey! (Choice A)");
-        System.out.println("Daily Card (Choice B)");
+        System.out.println("Daily card that will not save you. (Choice B)");
         System.out.println("About (Choice C)");
 
 
@@ -86,6 +86,9 @@ static String choice=null;
                 System.out.println();
                 System.out.println(firstBio.getBiography());
                 break;
+
+            default:
+                System.out.println("Please pick a less disturbing option.");
 
         }
         return choice;
