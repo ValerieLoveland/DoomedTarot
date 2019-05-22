@@ -1,18 +1,25 @@
 import java.util.Scanner;
 
 public class Main {
-static String choice=null;
-
+    static String choice = null;
+    static int guideCounter = 0;
+    static int uprightCardCounter = 0;
+    static int aboutCounter = 0;
 
 
     public static void main(String[] args) {
 
-        while ((choice == "a")||(choice == "b") || (choice == "c") || (choice == null)){
-        menu();
-        chosen();
+        //System.out.println("(type q to exit)");
+        System.out.println();
+        while (choice != "q") {
+            menu();
+            chosen();
 
-    }}
-//printing out the menu options
+
+        }
+    }
+
+    //printing out the menu options
     public static void menu() {
         System.out.println();
         System.out.println();
@@ -27,37 +34,32 @@ static String choice=null;
 
     }
 
-//this method takes the menu choice and uses it to run the other classes
+    //this method takes the menu choice and uses it to run the other classes
     public static String chosen() {
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
-        //System.out.println("choice is " + choice);
+        choice = choice.toLowerCase();
 
-
-        switch (choice) {
-            case "a" :
-                //Guide
-                Guide intro = new Guide();
-                intro.setInterpretation("Um, I don’t know why they say the journey is ill-fated. That's a little dramatic! It’s a joke I guess, haha. \n" +
-                        "I am your guide Peggy! I can help you draw and talk about the cards, \n" +
-                        "but remember: I am just an interpreter, the cards and you do all the work!\n");
-                System.out.println(intro.getInterpretation());
+        //switch to run what the user chose from the menu
+        switch (choice) {//all of these use polymorphism because these all use the same methods to get different cards/classes
+            case "a":
+                Guide guide = GuideText();
+                System.out.println(guide.conversation());
+                guideCounter++;
                 break;
+
             case "b"://Daily card
-                ReversedCard tower = new ReversedCard();
-                tower.setName("The Tower");
-                tower.setDescription("(Picture of a tower being struck by lightning with people falling out of it)");
-                tower.setDialogue("Peggy: Wow, this is a card you would not want to see, but uh, it doesn't necessarily mean something horrible is going to happen. \n It just usually means that. Another interpretation could be a change! A sudden, shocking change. \n Not all sudden shocking changes are neccessarily bad, right? Oh well, we'll try again tomorrow.");
-                System.out.println();
-                System.out.println(tower.getName());
-                System.out.println(tower.getDescription());
-                System.out.println();
-                System.out.println(tower.getDialogue());
+                UprightCard card = DrawUpright();
+                System.out.println(card.getName());
+                System.out.println(card.getDescription());
+                System.out.println(card.getDialogue());
+                uprightCardCounter++;
                 break;
 
             case "c": //About
                 About firstBio = new About();
-                firstBio.setBiography("Valerie Loveland is a Computer Science student and Tarot Card enthusiast.\n This is her first tarot app.");
+                firstBio.setBiography("Valerie Loveland is a Computer Science student and Tarot Card enthusiast.\n " +
+                        "This is her first tarot app.");
                 System.out.println();
                 System.out.println(firstBio.getBiography());
                 break;
@@ -69,6 +71,21 @@ static String choice=null;
         return choice;
     }
 
+    public static Guide GuideText() {
+        if (guideCounter == 0) {
+            return new GuideIntro();
+        } else if (guideCounter == 1) {
+        }
+        return new GuideDailogueSecond();
+    }
+
+    public static UprightCard DrawUpright() {
+        if (uprightCardCounter == 0) {
+            return new UprightCardTower();
+        } else if (uprightCardCounter == 1) {
+        }
+        return new UprightCardDevil();
+    }
 
 }
 
