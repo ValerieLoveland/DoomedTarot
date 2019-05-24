@@ -57,11 +57,9 @@ public class Main {
                 break;
 
             case "c": //About
-                About firstBio = new About();
-                firstBio.setBiography("Valerie Loveland is a Computer Science student and Tarot Card enthusiast.\n " +
-                        "This is her first tarot app.");
-                System.out.println();
-                System.out.println(firstBio.getBiography());
+                AboutText bio = BiographyText();
+                System.out.println(bio.getBiography());
+                aboutCounter++;
                 break;
 
             default:
@@ -75,8 +73,12 @@ public class Main {
         if (guideCounter == 0) {
             return new GuideIntro();
         } else if (guideCounter == 1) {
-        }
+
         return new GuideDailogueSecond();
+    }else if (guideCounter ==2){
+            return new GuideDialogueThird();
+        }
+        return null;
     }
 
     public static UprightCard DrawUpright() {
@@ -87,5 +89,31 @@ public class Main {
         return new UprightCardDevil();
     }
 
+    public static UprightCard DrawUpright() {
+        AboutText cardAnswer = null;
+        if (uprightCardCounter == 0) {
+            cardAnswer = new UprightCard.UprightCardTower();
+        } else if (aboutCounter == 1) {
+            cardAnswer = new UprightCard();
+        } else if (uprightCardCounter == 2) {
+            cardAnswer = new AboutText.Biography3();
+        }
+
+        return cardAnswer;
+    }
+
+    public static AboutText BiographyText() {
+        AboutText answer = null;
+        if (aboutCounter == 0) {
+            answer = new AboutText();
+        } else if (aboutCounter == 1) {
+            answer = new AboutText.Biography2();
+        } else if (aboutCounter == 2) {
+            answer = new AboutText.Biography3();
+        }
+
+        return answer;
+    }
 }
+
 
