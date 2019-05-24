@@ -3,8 +3,8 @@
             super("Biography");
         }
 
-        public AboutText(String biography2) {
-            super(biography2);
+        public AboutText(String Biography2) {
+            super(Biography2);
         }
 
         @Override

@@ -44,7 +44,7 @@ public class Main {
         switch (choice) {//all of these use polymorphism because these all use the same methods to get different cards/classes
             case "a":
                 Guide guide = GuideText();
-                System.out.println(guide.conversation());
+                System.out.println(guide.getGuideTalk());
                 guideCounter++;
                 break;
 
@@ -69,34 +69,28 @@ public class Main {
         return choice;
     }
 
+
     public static Guide GuideText() {
+        GuideIntro guideAnswer = null;
         if (guideCounter == 0) {
-            return new GuideIntro();
+            guideAnswer = new GuideIntro();
         } else if (guideCounter == 1) {
-
-        return new GuideDailogueSecond();
-    }else if (guideCounter ==2){
-            return new GuideDialogueThird();
+            guideAnswer = new GuideIntro.GuideTalk2();
+        } else if (guideCounter == 2) {
+            guideAnswer = new GuideIntro.GuideTalk3();
         }
-        return null;
+
+        return guideAnswer;
     }
 
     public static UprightCard DrawUpright() {
+        UprightCard cardAnswer = null;
         if (uprightCardCounter == 0) {
-            return new UprightCardTower();
-        } else if (uprightCardCounter == 1) {
-        }
-        return new UprightCardDevil();
-    }
-
-    public static UprightCard DrawUpright() {
-        AboutText cardAnswer = null;
-        if (uprightCardCounter == 0) {
-            cardAnswer = new UprightCard.UprightCardTower();
-        } else if (aboutCounter == 1) {
             cardAnswer = new UprightCard();
+        } else if (uprightCardCounter == 1) {
+            cardAnswer = new UprightCard.UprightTower();
         } else if (uprightCardCounter == 2) {
-            cardAnswer = new AboutText.Biography3();
+            cardAnswer = new UprightCard.UprightTower.UprightDevil();
         }
 
         return cardAnswer;

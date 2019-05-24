@@ -1,15 +1,17 @@
 
-public class Guide {
-    private String conversation;
+
+public abstract class Guide {
+    private String guideTalk;
 
 
-    public Guide(String conversation) {
-        this.conversation = conversation;
+    public Guide(String guideTalk) {
+        this.guideTalk = guideTalk;
     }
 
-    public String conversation(){
-        return this.conversation;
+    public String getGuideTalk(){
+        return this.guideTalk;
     }
 
 
+    public abstract String guideTalk();
 }
