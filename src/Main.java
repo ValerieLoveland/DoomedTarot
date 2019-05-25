@@ -1,26 +1,85 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+
 public class Main {
-    static String choice = null;
-    static int guideCounter = 0;
-    static int uprightCardCounter = 0;
-    static int aboutCounter = 0;
+    public static int uprightCardCounter = 0;
+    public static int aboutCounter = 0;
+    public static int guideCounter = 0;
+
+    public static String choice = null;
+    public static int v = 0;
+    String filename="saveGame.txt";
+    public static Integer[] saveFileValuesArray = new Integer[1000];
+
+    public static Integer[] readFileReturnIntegers(String filename) {
+
+        int i = 0;
+        // connect to the file
+        File file = new File(filename);
+        Scanner inputFile = null;
+        try {
+            inputFile = new Scanner(file);
+        }
+        // If file not found-error message
+        catch (FileNotFoundException Exception) {
+            System.out.println("File not found!");
+        }
+        // if connected, read file
+        if (inputFile != null) {
+            // loop through file for integers and store in array
+            try {
+                while (inputFile.hasNext()) {
+                    try {
+                        saveFileValuesArray[i] = inputFile.nextInt();
+                        i++;
+                    } catch (InputMismatchException e) {
+                        inputFile.next();
+                    }
+                }
+            } finally {
+                inputFile.close();
+            }
+            return saveFileValuesArray;
+        }
+        return new Integer[] {};
+    }
+
+    public static void printArrayAndIntegerCount(Integer[] temp) {
+        for (int i = 0; i < temp.length; i++) {
+            System.out.printf("numbers"+ i + temp[i]);
+        }
+
+    }
 
 
-    public static void main(String[] args) {
 
-        //System.out.println("(type q to exit)");
+   public static void main(String[] args) {
+
+
+System.out.println("(type q to exit)");
         System.out.println();
+
         while (choice != "q") {
+            readFileReturnIntegers("saveGame.txt");
+
+            System.out.println(saveFileValuesArray[0]);
+            System.out.println(saveFileValuesArray[1]);
+            System.out.println(saveFileValuesArray[2]);
+
             menu();
             chosen();
-
-
         }
     }
 
     //printing out the menu options
     public static void menu() {
+       uprightCardCounter = saveFileValuesArray[0];
+       aboutCounter = saveFileValuesArray[1];
+       guideCounter = saveFileValuesArray[2];
         System.out.println();
         System.out.println();
         System.out.println("DOOMED Tarot");
