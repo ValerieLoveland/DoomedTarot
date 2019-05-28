@@ -15,13 +15,13 @@ public class GuideIntro extends Guide{
 
     public static class GuideTalk2 extends GuideIntro {
         public GuideTalk2(){
-            super("Guidetalk 2 test");
+            super("Peggy: Hi I'm Peggy, I will guide you through using the app. I've been working with tarot cards for years. Remember, I am only a guide, you and the cards do all the work!");
         }
     }
 
     public static class GuideTalk3 extends GuideIntro {
         public GuideTalk3(){
-            super("Guidetalk 3 test");
+            super("Peggy: I've been thinking about getting into crystals.");
         }
     }
 

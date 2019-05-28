@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,35 +12,32 @@ public class Main {
     public static String choice = null;
     public static int v = 0;
     String filename="saveGame.txt";
-    public static Integer[] saveFileValuesArray = new Integer[1000];
+    public static Integer[] saveFileValuesArray = new Integer[10];
 
-    public static Integer[] readFileReturnIntegers(String filename) {
-
+    public static Integer[] readSaveFile(String filename) {//this is to read the save file for the place in the game
         int i = 0;
-        // connect to the file
-        File file = new File(filename);
-        Scanner inputFile = null;
+        File fileToRead = new File(filename);
+        Scanner saveGameFile = null;
         try {
-            inputFile = new Scanner(file);
+            saveGameFile = new Scanner(fileToRead);
         }
-        // If file not found-error message
+        // This makes file not found message
         catch (FileNotFoundException Exception) {
-            System.out.println("File not found!");
+            System.out.println("File not found");
         }
-        // if connected, read file
-        if (inputFile != null) {
-            // loop through file for integers and store in array
+        // reads file, int by int
+        if (saveGameFile != null) {
             try {
-                while (inputFile.hasNext()) {
+                while (saveGameFile.hasNext()) {
                     try {
-                        saveFileValuesArray[i] = inputFile.nextInt();
+                        saveFileValuesArray[i] = saveGameFile.nextInt();
                         i++;
                     } catch (InputMismatchException e) {
-                        inputFile.next();
+                        saveGameFile.next();
                     }
                 }
             } finally {
-                inputFile.close();
+                saveGameFile.close();
             }
             return saveFileValuesArray;
         }
@@ -64,7 +60,7 @@ System.out.println("(type q to exit)");
         System.out.println();
 
         while (choice != "q") {
-            readFileReturnIntegers("saveGame.txt");
+            readSaveFile("saveGame.txt");
 
             System.out.println(saveFileValuesArray[0]);
             System.out.println(saveFileValuesArray[1]);
@@ -105,6 +101,7 @@ System.out.println("(type q to exit)");
                 Guide guide = GuideText();
                 System.out.println(guide.getGuideTalk());
                 guideCounter++;
+                SaveTheGame();
                 break;
 
             case "b"://Daily card
@@ -113,13 +110,21 @@ System.out.println("(type q to exit)");
                 System.out.println(card.getDescription());
                 System.out.println(card.getDialogue());
                 uprightCardCounter++;
+                SaveTheGame();
                 break;
 
             case "c": //About
                 AboutText bio = BiographyText();
                 System.out.println(bio.getBiography());
                 aboutCounter++;
+               SaveTheGame();
                 break;
+
+            case "d"://save game
+
+                SaveTheGame();
+                break;
+
 
             default:
                 System.out.println("Please pick a less disturbing option.");
@@ -145,12 +150,23 @@ System.out.println("(type q to exit)");
     public static UprightCard DrawUpright() {
         UprightCard cardAnswer = null;
         if (uprightCardCounter == 0) {
-            cardAnswer = new UprightCard();
+            cardAnswer = new UprightCard.Upright3Swords();
         } else if (uprightCardCounter == 1) {
             cardAnswer = new UprightCard.UprightTower();
         } else if (uprightCardCounter == 2) {
-            cardAnswer = new UprightCard.UprightTower.UprightDevil();
+            cardAnswer = new UprightCard.UprightDevil();
+        }else if (uprightCardCounter == 3) {
+            cardAnswer = new UprightCard.Upright5Pentacles();
+        }else if (uprightCardCounter == 4) {
+            cardAnswer = new UprightCard.Upright9Swords();
+        }else if (uprightCardCounter == 5) {
+            cardAnswer = new UprightCard.UprightHangedMan();
+        }else if (uprightCardCounter == 6) {
+            cardAnswer = new UprightCard.UprightMoon();
+        }else if (uprightCardCounter == 7) {
+            cardAnswer = new UprightCard.Upright10Swords();
         }
+
 
         return cardAnswer;
     }
@@ -167,6 +183,19 @@ System.out.println("(type q to exit)");
 
         return answer;
     }
+
+    public static void SaveTheGame(){
+       try {
+            PrintStream saveFile = new PrintStream("saveGame.txt");
+            saveFile.println(uprightCardCounter);
+            saveFile.println(aboutCounter);
+           saveFile.println(guideCounter);
+            saveFile.close();
+        } catch (IOException e) {
+            System.out.println("Error:" + e.toString());
+        }
+    }
 }
+
 
 
