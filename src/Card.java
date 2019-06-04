@@ -38,4 +38,7 @@ abstract class Card {
     public abstract String UprightTower();
 
     public abstract String UprightDevil();
+
+    public abstract String ReversedTower();
+    public abstract String Career();
 }

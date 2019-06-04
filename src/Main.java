@@ -8,12 +8,15 @@ public class Main {
     public static int uprightCardCounter = 0;
     public static int aboutCounter = 0;
     public static int guideCounter = 0;
+    public static int readingCounter = 0;
+
 
     public static String choice = null;
     public static int v = 0;
     String filename="saveGame.txt";
     public static Integer[] saveFileValuesArray = new Integer[10];
 
+    //This is to read in the values from the save file and also has the exception handling
     public static Integer[] readSaveFile(String filename) {//this is to read the save file for the place in the game
         int i = 0;
         File fileToRead = new File(filename);
@@ -62,12 +65,16 @@ System.out.println("(type q to exit)");
         while (choice != "q") {
             readSaveFile("saveGame.txt");
 
-            System.out.println(saveFileValuesArray[0]);
-            System.out.println(saveFileValuesArray[1]);
-            System.out.println(saveFileValuesArray[2]);
-
+//I have this part here for testing the save file
+//            System.out.println(saveFileValuesArray[0]);
+//            System.out.println(saveFileValuesArray[1]);
+//            System.out.println(saveFileValuesArray[2]);
+           // MulticardReading();
             menu();
             chosen();
+
+
+
         }
     }
 
@@ -85,6 +92,7 @@ System.out.println("(type q to exit)");
         System.out.println("Meet your Guide on this ill-fated journey! (Choice A)");
         System.out.println("Daily card that will not save you. (Choice B)");
         System.out.println("About (Choice C)");
+        System.out.println("A Reading (Choice E)");
 
 
     }
@@ -125,6 +133,15 @@ System.out.println("(type q to exit)");
                 SaveTheGame();
                 break;
 
+            case "e"://print reading
+
+                Reading career = MulticardReading();
+                System.out.println(career.getName());
+                System.out.println(career.getDescription());
+                System.out.println(career.getDialogue());
+                System.out.println();
+                break;
+
 
             default:
                 System.out.println("Please pick a less disturbing option.");
@@ -150,21 +167,21 @@ System.out.println("(type q to exit)");
     public static UprightCard DrawUpright() {
         UprightCard cardAnswer = null;
         if (uprightCardCounter == 0) {
-            cardAnswer = new UprightCard.Upright3Swords();
+            cardAnswer = new ReversedCard.ReversedTower();
         } else if (uprightCardCounter == 1) {
-            cardAnswer = new UprightCard.UprightTower();
-        } else if (uprightCardCounter == 2) {
-            cardAnswer = new UprightCard.UprightDevil();
-        }else if (uprightCardCounter == 3) {
-            cardAnswer = new UprightCard.Upright5Pentacles();
-        }else if (uprightCardCounter == 4) {
-            cardAnswer = new UprightCard.Upright9Swords();
-        }else if (uprightCardCounter == 5) {
-            cardAnswer = new UprightCard.UprightHangedMan();
-        }else if (uprightCardCounter == 6) {
-            cardAnswer = new UprightCard.UprightMoon();
-        }else if (uprightCardCounter == 7) {
-            cardAnswer = new UprightCard.Upright10Swords();
+            cardAnswer = new ReversedCard.ReversedFool();
+//        } else if (uprightCardCounter == 2) {
+//            cardAnswer = new UprightCard.UprightDevil();
+//        }else if (uprightCardCounter == 3) {
+//            cardAnswer = new UprightCard.Upright5Pentacles();
+//        }else if (uprightCardCounter == 4) {
+//            cardAnswer = new UprightCard.Upright9Swords();
+//        }else if (uprightCardCounter == 5) {
+//            cardAnswer = new UprightCard.UprightHangedMan();
+//        }else if (uprightCardCounter == 6) {
+//            cardAnswer = new UprightCard.UprightMoon();
+//        }else if (uprightCardCounter == 7) {
+//            cardAnswer = new UprightCard.Upright10Swords();
         }
 
 
@@ -184,6 +201,22 @@ System.out.println("(type q to exit)");
         return answer;
     }
 
+    public static Reading MulticardReading(){
+        Reading readingAnswer = null;
+        if (readingCounter == 0) {
+            readingAnswer = new Reading();
+
+
+
+//            for( T i : cardsInCareerReading) {
+//                System.out.println(i);}
+
+
+        }
+
+        return readingAnswer;
+    }
+    //This section shows the output of the values for the save file
     public static void SaveTheGame(){
        try {
             PrintStream saveFile = new PrintStream("saveGame.txt");
@@ -195,6 +228,9 @@ System.out.println("(type q to exit)");
             System.out.println("Error:" + e.toString());
         }
     }
+
+
+
 }
 
 

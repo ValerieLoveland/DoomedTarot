@@ -15,13 +15,13 @@
 
         public static class Biography2 extends AboutText {
             public Biography2(){
-                super("Biography2 test");
+                super("\"Valerie Loveland is a Computer Science student and tarot card enthusiast. This is her first tarot app. \"");
             }
         }
 
         public static class Biography3 extends AboutText {
             public Biography3(){
-                super("Biography3 test");
+                super("Valerie Loveland has been reported missing since August.");
             }
         }
 

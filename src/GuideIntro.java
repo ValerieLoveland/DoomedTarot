@@ -9,7 +9,7 @@ public class GuideIntro extends Guide{
 
     @Override
     public String guideTalk(){//constructor
-        return "Valerie Loveland is a Computer Science student and tarot card enthusiast. This is her first tarot app. ";
+        return "Text about Peggy";
     }
 
 

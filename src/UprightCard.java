@@ -1,6 +1,8 @@
 import javax.swing.*;
 
 public class UprightCard extends Card {
+
+
     public UprightCard() {
         super("name", "description", "dialogue");
     }//this is one of the places that uses inheritance
@@ -44,6 +46,16 @@ public class UprightCard extends Card {
     @Override
     public String UprightDevil() {
         return UprightDevil();
+    }
+
+    @Override
+    public String ReversedTower() {
+        return ReversedTower();
+    }
+
+    @Override
+    public String Career() {
+        return null;
     }
 
 
@@ -125,6 +137,19 @@ public class UprightCard extends Card {
             super("Ten of Swords", "10 swords descript2", "10 swords dialogue");
         }
     }
+
+    public static class UprightTowerinCareerReading extends UprightCard{
+        public UprightTowerinCareerReading() {
+            super("The Tower", "A tower with lightning and people falling", "This usually signals something sudden and terrible happens");
+        }
+
+        public UprightTowerinCareerReading(String name, String description, String dialogue) {
+            super("The Fool (Reversed)", "Reversed Fool descript2", "Reversed Fool dialogue");
+        }
     }
-//}
+
+
+//    }
+ }
+
 
