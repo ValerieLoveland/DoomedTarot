@@ -1,3 +1,13 @@
+/*
+			Name: Valerie Loveland
+			Date: 06/04/2019
+			Assignment: 3
+			File: Reversed Card
+			Description: This class is for Reversed card because it will display in a different way eventually and
+			    also so I can impliment only reversed or upright for a plot point later
+
+*/
+
 import javax.swing.*;
 
 public class ReversedCard extends UprightCard {

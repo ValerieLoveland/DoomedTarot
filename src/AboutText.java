@@ -1,4 +1,13 @@
-    public class AboutText extends About{
+/*
+			Name: Valerie Loveland
+			Date: 06/04/2019
+			Assignment: 3
+			File: About Text
+			Description: This class is so I can change the biographies for the maker to go along with the plot point.
+
+*/
+
+public class AboutText extends About{
         public AboutText(){
             super("Biography");
         }

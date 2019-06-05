@@ -1,3 +1,12 @@
+/*
+			Name: Valerie Loveland
+			Date: 06/04/2019
+			Assignment: 3
+			File: Main
+			Description: This is the main menu as well as the
+
+*/
+
 import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,6 +18,7 @@ public class Main {
     public static int aboutCounter = 0;
     public static int guideCounter = 0;
     public static int readingCounter = 0;
+    public static boolean ending = true;
 
 
     public static String choice = null;
@@ -59,22 +69,19 @@ public class Main {
    public static void main(String[] args) {
 
 
-System.out.println("(type q to exit)");
+
         System.out.println();
 
-        while (choice != "q") {
+        while (ending = true) {
             readSaveFile("saveGame.txt");
 
 //I have this part here for testing the save file
 //            System.out.println(saveFileValuesArray[0]);
 //            System.out.println(saveFileValuesArray[1]);
 //            System.out.println(saveFileValuesArray[2]);
-           // MulticardReading();
+
             menu();
             chosen();
-
-
-
         }
     }
 
@@ -92,7 +99,8 @@ System.out.println("(type q to exit)");
         System.out.println("Meet your Guide on this ill-fated journey! (Choice A)");
         System.out.println("Daily card that will not save you. (Choice B)");
         System.out.println("About (Choice C)");
-        System.out.println("Two Card Reading: Your career (Choice E)");
+        System.out.println("Two Card Reading: Your career (Choice D)");
+        System.out.println("Exit Doomed Tarot (Choice Q)");
 
 
     }
@@ -128,12 +136,12 @@ System.out.println("(type q to exit)");
                SaveTheGame();
                 break;
 
-            case "d"://save game
+            case "e"://save game
 
                 SaveTheGame();
                 break;
 
-            case "e"://print reading
+            case "d"://print reading
 
                 Reading career = MulticardReading();
                 System.out.println(career.getName());
@@ -141,6 +149,15 @@ System.out.println("(type q to exit)");
                 System.out.println(career.getDialogue());
                 System.out.println();
                 break;
+
+            case "q"://to end
+
+                System.out.println();
+                System.out.println("Leaving doesn't make us go away.");
+                System.out.println();
+                ending = false;
+                System.exit(0);
+               break;
 
 
             default:
@@ -170,20 +187,19 @@ System.out.println("(type q to exit)");
             cardAnswer = new ReversedCard.ReversedTower();
         } else if (uprightCardCounter == 1) {
             cardAnswer = new ReversedCard.ReversedFool();
-//        } else if (uprightCardCounter == 2) {
-//            cardAnswer = new UprightCard.UprightDevil();
-//        }else if (uprightCardCounter == 3) {
-//            cardAnswer = new UprightCard.Upright5Pentacles();
-//        }else if (uprightCardCounter == 4) {
-//            cardAnswer = new UprightCard.Upright9Swords();
-//        }else if (uprightCardCounter == 5) {
-//            cardAnswer = new UprightCard.UprightHangedMan();
-//        }else if (uprightCardCounter == 6) {
-//            cardAnswer = new UprightCard.UprightMoon();
-//        }else if (uprightCardCounter == 7) {
-//            cardAnswer = new UprightCard.Upright10Swords();
+        } else if (uprightCardCounter == 2) {
+            cardAnswer = new UprightCard.UprightDevil();
+        }else if (uprightCardCounter == 3) {
+            cardAnswer = new UprightCard.Upright5Pentacles();
+        }else if (uprightCardCounter == 4) {
+            cardAnswer = new UprightCard.Upright9Swords();
+        }else if (uprightCardCounter == 5) {
+            cardAnswer = new UprightCard.UprightHangedMan();
+        }else if (uprightCardCounter == 6) {
+            cardAnswer = new UprightCard.UprightMoon();
+        }else if (uprightCardCounter == 7) {
+            cardAnswer = new UprightCard.Upright10Swords();
         }
-
 
         return cardAnswer;
     }

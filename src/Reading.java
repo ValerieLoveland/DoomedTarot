@@ -1,20 +1,19 @@
+/*
+			Name: Valerie Loveland
+			Date: 06/04/2019
+			Assignment: 3
+			File: Reading
+			Description: This class is for Readings with more than one card. So far I only have one reading,
+			I want to incorporate more.
+
+*/
+
 import java.util.ArrayList;
 
 public class Reading<T extends Card> {
     private String name;
     private String description;
     private String dialogue;
-
-//    public static class UprightTower extends UprightCard {
-//        public UprightTower() {
-//            super("The Tower", "A tower with people falling out of it", "Just because a shocking surprise is usually terrible, doesn't mean that every shocking surprise has to be terrible!");
-//        }
-//
-//        public UprightTower(String name, String description, String dialogue) {
-//            super("UprightTower test", "Tower descript2", "Tower dialogue");
-//        }}
-
-
 
 
     public ArrayList<T> cardsInCareerReading = new ArrayList<>();
@@ -29,19 +28,19 @@ public class Reading<T extends Card> {
     }
 
     public Reading() {
-        this.name ="Peggy: These two cards together, are pretty bad together, sorry!";
-        this.description ="How do you feel about your job? ";
-        this.dialogue ="Do you think your job is going as poorly as the cards are saying?";
+        this.name = "Peggy: These two cards together, are pretty bad together, sorry!";
+        this.description = "Peggy: How do you feel about your job? ";
+        this.dialogue = "Peggy: Do you think your job is going as poorly as the cards are saying?";
 
         //reading();
         cardsInCareerReading.add((T) new UprightCard.UprightTowerinCareerReading());
         cardsInCareerReading.add((T) new ReversedCard.ReversedFoolinCareerReading());
         for (int i = 0; i < cardsInCareerReading.size(); i++) {
-            System.out.println("Card " + i);
+            System.out.println("Card " + (i + 1));
             System.out.println(cardsInCareerReading.get(i));
 
         }
-
+        System.out.println();
     }
 
 
@@ -56,32 +55,5 @@ public class Reading<T extends Card> {
     public String getDialogue() {
         return dialogue;
     }
-//    private void reading() {
-//        boolean addingToCareerReading = cardsInCareerReading.add((T) new UprightCard.UprightTowerinCareerReading());
-//        boolean addingToCareerReading2 = cardsInCareerReading.add((T) new ReversedCard.ReversedFoolinCareerReading());
-//        for (int i = 0; i < cardsInCareerReading.size(); i++) {
-//            System.out.println("Card " + i);
-//            System.out.println(cardsInCareerReading.get(i));
-//            System.out.println(cardsInCareerReading.description(i));
-//            System.out.println(cardsInCareerReading.getDescription());
-//            System.out.println(cardsInCareerReading.getDialogue());
-//            for( T i : cardsInCareerReading) {
-//                System.out.println(i);
-//
-//            }
+
 }
-//
-//    public void career(T Card) {
-//        //answer = new AboutText.Biography3();
-//        boolean addingToCareerReading = cardsInCareerReading.add((T) new UprightCard.UprightTowerinCareerReading());
-//        boolean addingToCareerReading2 = cardsInCareerReading.add((T) new ReversedCard.ReversedFool());
-//        for (int i = 0; i < cardsInCareerReading.size(); i++) {
-//            System.out.println("Card " + i);
-//            System.out.println(cardsInCareerReading.get(i));
-//
-//        }
-//    }
-
-
-
-
