@@ -92,7 +92,7 @@ System.out.println("(type q to exit)");
         System.out.println("Meet your Guide on this ill-fated journey! (Choice A)");
         System.out.println("Daily card that will not save you. (Choice B)");
         System.out.println("About (Choice C)");
-        System.out.println("A Reading (Choice E)");
+        System.out.println("Two Card Reading: Your career (Choice E)");
 
 
     }
@@ -206,16 +206,11 @@ System.out.println("(type q to exit)");
         if (readingCounter == 0) {
             readingAnswer = new Reading();
 
-
-
-//            for( T i : cardsInCareerReading) {
-//                System.out.println(i);}
-
-
         }
 
         return readingAnswer;
     }
+
     //This section shows the output of the values for the save file
     public static void SaveTheGame(){
        try {

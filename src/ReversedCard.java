@@ -21,6 +21,11 @@ public class ReversedCard extends UprightCard {
     public String getDialogue() {
         return this.dialogue;
     }
+    public String toString() {
+        return "name: " + this.name + " description: " + this.description + " dialogue: " + this.dialogue;
+    }
+
+
 
     @Override
     ImageIcon display() {
@@ -71,6 +76,7 @@ public class ReversedCard extends UprightCard {
             super("The Fool (Reversed)", "Reversed Fool descript2", "Reversed Fool dialogue");
         }
     }
+
 }
 //I have this commented out because I want to see this simpler
 

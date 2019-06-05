@@ -29,6 +29,10 @@ public class Reading<T extends Card> {
     }
 
     public Reading() {
+        this.name ="Peggy: These two cards together, are pretty bad together, sorry!";
+        this.description ="How do you feel about your job? ";
+        this.dialogue ="Do you think your job is going as poorly as the cards are saying?";
+
         //reading();
         cardsInCareerReading.add((T) new UprightCard.UprightTowerinCareerReading());
         cardsInCareerReading.add((T) new ReversedCard.ReversedFoolinCareerReading());

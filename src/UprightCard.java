@@ -7,8 +7,6 @@ public class UprightCard extends Card {
         super("name", "description", "dialogue");
     }//this is one of the places that uses inheritance
 
-//    public UprightCard(String name1, String description1, String dialogue1) {
-//    }
 
     ImageIcon display() {
         return null;
@@ -35,6 +33,9 @@ public class UprightCard extends Card {
 
     public String getDialogue() {
         return this.dialogue;
+    }
+    public String toString() {
+        return "name: " + this.name + " description: " + this.description + " dialogue: " + this.dialogue;
     }
 
 
@@ -149,7 +150,7 @@ public class UprightCard extends Card {
     }
 
 
-//    }
+
  }
 
 
