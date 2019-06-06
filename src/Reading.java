@@ -5,7 +5,7 @@
 			File: Reading
 			Description: This class is for Readings with more than one card. So far I only have one reading,
 			I want to incorporate more.
-			Working on this
+
 
 */
 
