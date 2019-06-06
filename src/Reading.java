@@ -4,7 +4,7 @@
 			Assignment: 3
 			File: Reading
 			Description: This class is for Readings with more than one card.
-
+c
 */
 
 import java.util.ArrayList;
