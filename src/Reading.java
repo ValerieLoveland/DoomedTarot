@@ -3,9 +3,7 @@
 			Date: 06/04/2019
 			Assignment: 3
 			File: Reading
-			Description: This class is for Readings with more than one card. So far I only have one reading,
-			I want to incorporate more.
-
+			Description: This class is for Readings with more than one card.
 
 */
 
