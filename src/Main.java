@@ -1,26 +1,95 @@
+/*
+			Name: Valerie Loveland
+			Date: 06/04/2019
+			Assignment: 3
+			File: Main
+			Description: This is the main menu as well as the
+
+*/
+
+import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+
 public class Main {
-    static String choice = null;
-    static int guideCounter = 0;
-    static int uprightCardCounter = 0;
-    static int aboutCounter = 0;
+    public static int uprightCardCounter = 0;
+    public static int aboutCounter = 0;
+    public static int guideCounter = 0;
+    public static int readingCounter = 0;
+    public static boolean ending = true;
 
 
-    public static void main(String[] args) {
+    public static String choice = null;
+    public static int v = 0;
+    String filename="saveGame.txt";
+    public static Integer[] saveFileValuesArray = new Integer[10];
 
-        //System.out.println("(type q to exit)");
+    //This is to read in the values from the save file and also has the exception handling
+    public static Integer[] readSaveFile(String filename) {//this is to read the save file for the place in the game
+        int i = 0;
+        File fileToRead = new File(filename);
+        Scanner saveGameFile = null;
+        try {
+            saveGameFile = new Scanner(fileToRead);
+        }
+        // This makes file not found message
+        catch (FileNotFoundException Exception) {
+            System.out.println("File not found");
+        }
+        // reads file, int by int
+        if (saveGameFile != null) {
+            try {
+                while (saveGameFile.hasNext()) {
+                    try {
+                        saveFileValuesArray[i] = saveGameFile.nextInt();
+                        i++;
+                    } catch (InputMismatchException e) {
+                        saveGameFile.next();
+                    }
+                }
+            } finally {
+                saveGameFile.close();
+            }
+            return saveFileValuesArray;
+        }
+        return new Integer[] {};
+    }
+
+    public static void printArrayAndIntegerCount(Integer[] temp) {
+        for (int i = 0; i < temp.length; i++) {
+            System.out.printf("numbers"+ i + temp[i]);
+        }
+
+    }
+
+
+
+   public static void main(String[] args) {
+
+
+
         System.out.println();
-        while (choice != "q") {
+
+        while (ending = true) {
+            readSaveFile("saveGame.txt");
+
+//I have this part here for testing the save file
+//            System.out.println(saveFileValuesArray[0]);
+//            System.out.println(saveFileValuesArray[1]);
+//            System.out.println(saveFileValuesArray[2]);
+
             menu();
             chosen();
-
-
         }
     }
 
     //printing out the menu options
     public static void menu() {
+       uprightCardCounter = saveFileValuesArray[0];
+       aboutCounter = saveFileValuesArray[1];
+       guideCounter = saveFileValuesArray[2];
         System.out.println();
         System.out.println();
         System.out.println("DOOMED Tarot");
@@ -30,6 +99,8 @@ public class Main {
         System.out.println("Meet your Guide on this ill-fated journey! (Choice A)");
         System.out.println("Daily card that will not save you. (Choice B)");
         System.out.println("About (Choice C)");
+        System.out.println("Two Card Reading: Your career (Choice D)");
+        System.out.println("Exit Doomed Tarot (Choice Q)");
 
 
     }
@@ -44,8 +115,9 @@ public class Main {
         switch (choice) {//all of these use polymorphism because these all use the same methods to get different cards/classes
             case "a":
                 Guide guide = GuideText();
-                System.out.println(guide.conversation());
+                System.out.println(guide.getGuideTalk());
                 guideCounter++;
+                SaveTheGame();
                 break;
 
             case "b"://Daily card
@@ -54,13 +126,39 @@ public class Main {
                 System.out.println(card.getDescription());
                 System.out.println(card.getDialogue());
                 uprightCardCounter++;
+                SaveTheGame();
                 break;
 
             case "c": //About
                 AboutText bio = BiographyText();
                 System.out.println(bio.getBiography());
                 aboutCounter++;
+               SaveTheGame();
                 break;
+
+            case "e"://save game
+
+                SaveTheGame();
+                break;
+
+            case "d"://print reading
+
+                Reading career = MulticardReading();
+                System.out.println(career.getName());
+                System.out.println(career.getDescription());
+                System.out.println(career.getDialogue());
+                System.out.println();
+                break;
+
+            case "q"://to end
+
+                System.out.println();
+                System.out.println("Leaving doesn't make us go away.");
+                System.out.println();
+                ending = false;
+                System.exit(0);
+               break;
+
 
             default:
                 System.out.println("Please pick a less disturbing option.");
@@ -69,34 +167,38 @@ public class Main {
         return choice;
     }
 
+
     public static Guide GuideText() {
+        GuideIntro guideAnswer = null;
         if (guideCounter == 0) {
-            return new GuideIntro();
+            guideAnswer = new GuideIntro();
         } else if (guideCounter == 1) {
-
-        return new GuideDailogueSecond();
-    }else if (guideCounter ==2){
-            return new GuideDialogueThird();
+            guideAnswer = new GuideIntro.GuideTalk2();
+        } else if (guideCounter == 2) {
+            guideAnswer = new GuideIntro.GuideTalk3();
         }
-        return null;
+
+        return guideAnswer;
     }
 
     public static UprightCard DrawUpright() {
+        UprightCard cardAnswer = null;
         if (uprightCardCounter == 0) {
-            return new UprightCardTower();
+            cardAnswer = new ReversedCard.ReversedTower();
         } else if (uprightCardCounter == 1) {
-        }
-        return new UprightCardDevil();
-    }
-
-    public static UprightCard DrawUpright() {
-        AboutText cardAnswer = null;
-        if (uprightCardCounter == 0) {
-            cardAnswer = new UprightCard.UprightCardTower();
-        } else if (aboutCounter == 1) {
-            cardAnswer = new UprightCard();
+            cardAnswer = new ReversedCard.ReversedFool();
         } else if (uprightCardCounter == 2) {
-            cardAnswer = new AboutText.Biography3();
+            cardAnswer = new UprightCard.UprightDevil();
+        }else if (uprightCardCounter == 3) {
+            cardAnswer = new UprightCard.Upright5Pentacles();
+        }else if (uprightCardCounter == 4) {
+            cardAnswer = new UprightCard.Upright9Swords();
+        }else if (uprightCardCounter == 5) {
+            cardAnswer = new UprightCard.UprightHangedMan();
+        }else if (uprightCardCounter == 6) {
+            cardAnswer = new UprightCard.UprightMoon();
+        }else if (uprightCardCounter == 7) {
+            cardAnswer = new UprightCard.Upright10Swords();
         }
 
         return cardAnswer;
@@ -114,6 +216,33 @@ public class Main {
 
         return answer;
     }
+
+    public static Reading MulticardReading(){
+        Reading readingAnswer = null;
+        if (readingCounter == 0) {
+            readingAnswer = new Reading();
+
+        }
+
+        return readingAnswer;
+    }
+
+    //This section shows the output of the values for the save file
+    public static void SaveTheGame(){
+       try {
+            PrintStream saveFile = new PrintStream("saveGame.txt");
+            saveFile.println(uprightCardCounter);
+            saveFile.println(aboutCounter);
+           saveFile.println(guideCounter);
+            saveFile.close();
+        } catch (IOException e) {
+            System.out.println("Error:" + e.toString());
+        }
+    }
+
+
+
 }
+
 
 
