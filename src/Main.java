@@ -102,6 +102,7 @@ public class Main {
         System.out.println("Daily card that will not save you. (Choice B)");
         System.out.println("About (Choice C)");
         System.out.println("Two Card Reading: Your career (Choice D)");
+        System.out.println("Save Reading Object to a File (Choice E)");
         System.out.println("Exit Doomed Tarot (Choice Q)");
 
 
@@ -138,7 +139,7 @@ public class Main {
                SaveTheGame();
                 break;
 
-            case "e"://save game
+            case "f"://save game
 
                 SaveTheGame();
                 break;
@@ -151,6 +152,13 @@ public class Main {
                 System.out.println(career.getDialogue());
                 System.out.println();
                 break;
+
+            case "e"://print reading
+
+                DemoReadWriteObject first = ReadAndWrite();
+                System.out.println();
+                break;
+
 
             case "q"://to end
 
@@ -223,12 +231,19 @@ public class Main {
         Reading readingAnswer = null;
         if (readingCounter == 0) {
             readingAnswer = new Reading();
-
         }
 
         return readingAnswer;
     }
 
+
+    public static DemoReadWriteObject ReadAndWrite(){
+        DemoReadWriteObject readWriteObjectAnswer = null;
+        //if (readingCounter == 0) {
+            readWriteObjectAnswer = new DemoReadWriteObject.WriteTest();
+        //}
+        return readWriteObjectAnswer;
+    }
     //This section shows the output of the values for the save file
     public static void SaveTheGame(){
        try {

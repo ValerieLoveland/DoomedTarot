@@ -10,8 +10,24 @@ public class DemoReadWriteObject implements Serializable {
         this.cardPhase = cardPhase;
     }
 
-    public class WriteTest {
+    public String getCardName() {
+        return cardName;
+    }
+    public String getCardPhase(){
+        return cardPhase;
+    }
+
+    public String toString() {
+        return "Card Name: " + this.cardName + " Card Phase: " + this.cardPhase;
+    }
+
+    public DemoReadWriteObject() {
+
+    }
+
+    public static class WriteTest extends DemoReadWriteObject{
         DemoReadWriteObject first = new DemoReadWriteObject("The Moon (Reversed)", "Before switch");
+
 
         {
             try {
